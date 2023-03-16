@@ -1,10 +1,11 @@
 <?php
 include("../includes/db.php");
 session_start();
+include('welcome.php');
 ?>
 <html>
 <head>
-    <title>Penn Rangers at COC</title>
+    <title>Admin at Penn rangers</title>
     <link rel="icon" type="image/x-icon" href="ticon.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -19,7 +20,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
 
 </head>
-<body style="background-color: rosybrown;">
+<body style="background-color: lightblue;">
 <nav class="navbar navbar-fixed-top">
     <div class="navbar-default" id="navbar"><!-- navbar start-->
         <div class="container"><!-- container start-->
@@ -41,7 +42,10 @@ session_start();
                 <div class="padding-nav"> <!-- padding start-->
                     <ul class="nav navbar-nav navbar-left">
                         <li class="active">
-                            <a href="index.php">Home</a>
+                            <a href="../index.php">Home</a>
+                        </li>
+                        <li style="margin-left:250px; margin-top:5px;border-style:solid;border-radius: 7px; border-width: 1px; border-color: darkblue;">
+                           <h4 style="margin-right:10px;"> <?php welcome(); ?></h4>
                         </li>
 
                     </ul>
@@ -51,7 +55,8 @@ session_start();
     </div>
 </nav>
 
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 100px; border-style:solid;border-radius: 10px; border-width: 1px;">
+    <h2>Year</h2>
     <div class="col-md-3">
     <div class="box">
         <h4>Year in Database</h4>
@@ -117,6 +122,98 @@ session_start();
 </div>
 
 </div>
+<div class="container" style="margin-top: 20px; margin-bottom:20px; border-style:solid;border-radius: 10px; border-width: 1px;">
+    <h2>Admin Id and Password</h2>
+    <div class="col-md-3">
+    <div class="box">
+        <form class="navbar-form" method="post" accept="">
+            <div class="table-responsive" style="margin-top:5px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Admin Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    $query="select * from admin";
+                    $run=mysqli_query($con,$query);
+                    while($row=mysqli_fetch_array($run)){
+                    $email=$row['admin_email'];
+                    $pass=$row['admin_pass'];
+                    ?>
+                    <tr>
+                        <td><?php echo "$email" ?></td>
+                    </tr>
+                    <?php } ?>
+                    
+                </tbody>
+            </table>
+        </div>
+        </form>
+    </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box">
+            <label>Delete Admin</label>
+            <form method="post" accept="" class="navbar-form">
+                <select name="id" class="form-control" style="margin-top:5px; margin-right: 5px;">
+                <option>select</option>
+                    <?php
+                    $run=mysqli_query($con,"select admin_email from admin");
+                        while($row=mysqli_fetch_array($run)){
+                            $email=$row['admin_email'];
+                    ?>
+                        <option><?php echo $email ?></option>
+
+                        <?php } ?>
+                        
+            </select>
+            <input type="password" name="delpass" placeholder="enter your password" required="" class="form-control" style="margin-top:5px;">
+            <button type="submit" value="Search" name="delete_admin" class="btn btn-primary" style="margin-top:8px; margin-left: 8px;"> delete </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box">
+            <label>Insert New Admin</label>
+            <form method="post" accept="" class="form-login">
+                <input type="text" name="id" placeholder="enter Id here" required="" class="form-control">
+                <input type="passsword" name="pass" placeholder="Enter password" required="" class="form-control" style="margin-top:5px; margin-bottom:5px;">
+                <input type="passsword" name="confirmpass"  placeholder="Confirm password" required="" class="form-control">
+                <button type="submit" value="Search" name="insert_cred" class="btn btn-primary" style="margin-top:8px; margin-left: 8px;">
+                                submit
+                            </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="box">
+            <label>Update Passoword</label>
+            <form method="post" accept="" class="navbar-form">
+                <select name="id" class="form-control" style="margin-top:5px; margin-right: 5px;">
+                <option>select</option>
+                    <?php
+                    $run=mysqli_query($con,"select admin_email from admin");
+                        while($row=mysqli_fetch_array($run)){
+                            $email=$row['admin_email'];
+                    ?>
+                        <option><?php echo $email ?></option>
+
+                        <?php } ?>
+                        
+            </select>
+            <input type="password" name="oldpass" class="form-control" placeholder="current password" required="" style="margin-top:5px; margin-bottom:5px;">
+            <input type="password" name="newpass" class="form-control" placeholder="new password" required="" style="margin-bottom:5px;">
+            <input type="password" name="confirmpass" class="form-control" placeholder="confirm password" required="">
+            <button type="submit" value="Search" name="update_pass" class="btn btn-primary" style="margin-top:8px; margin-left: 8px;"> update </button>
+            </form>
+        </div>
+    </div>
+
+    
+</div>
 
 </body>
 </html>
@@ -136,5 +233,61 @@ if(isset($_POST['insert'])){
     echo"<script>alert('Deleted Successfully')
     window.open('admin.php','_SELF')
     </script>";
+}elseif(isset($_POST['insert_cred'])){
+    $id=$_POST['id'];
+    $pass=$_POST['pass'];
+    $cpass=$_POST['confirmpass'];
+    if($pass==$cpass){
+        $query="insert into admin values('$id','$pass')";
+        $run=mysqli_query($con,$query);
+        echo "<script>alert('Entered successfully')
+        window.open('admin.php','_SELF')</script>";
+    }else{
+        echo"<script>alert('password and confirm password does not match')</script>";
+    }
+}elseif(isset($_POST['update_pass'])){
+    $id=$_POST['id'];
+    $opass=$_POST['oldpass'];
+    $npass=$_POST['newpass'];
+    $cpass=$_POST['confirmpass'];
+    $check="select admin_pass from admin where admin_email='$id'";
+    $run=mysqli_query($con,$check);
+    $row=mysqli_fetch_array($run);
+    $checkpass=$row['admin_pass'];
+    if($opass==$checkpass){
+        if($npass==$cpass){
+            $update="update admin set admin_pass='$npass' where admin_email='$id'";
+            $run=mysqli_query($con,$update);
+            echo "<script>alert('updated successfully')
+            window.open('admin.php','_self')</script>";
+        }else{
+            echo "<script>alert('New and confirm password mismatch')</script>";
+        }
+    }else{
+        echo "<script>alert('current password mismatch')</script>";
+    }
+
+}elseif(isset($_POST['delete_admin'])){
+    $count="select admin_email from admin";
+    $run=mysqli_query($con,$count);
+    $rowcount=mysqli_num_rows($run);
+    if($rowcount>1){
+    $id=$_POST['id'];
+    $pass=$_POST['delpass'];
+    $check="select admin_pass from admin where admin_email='$id'";
+    $run=mysqli_query($con,$check);
+    $row=mysqli_fetch_array($run);
+    $checkpass=$row['admin_pass'];
+    if($pass==$checkpass){
+        $query="delete from admin where admin_email='$id'";
+        $run=mysqli_query($con,$query);
+        echo "<script>alert('deleted successfully')
+        window.open('adminlogin.php','_SELF')</script>";
+    }else{
+        echo "<script>alert('password mismatch')</script>";
+    }
+    }else{
+        echo "<script>alert('SORRY! you are the only admin and that cannot be deleted.')</script>";
+    }
 }
 ?>
