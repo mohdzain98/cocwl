@@ -37,7 +37,10 @@ include("includes/navbar.php");
                 <a href="war.php?startawar"><i class="fa fa-sign-in"></i> Star a War</a>
             </li>
             <li class="<?php if(isset($_GET['warinfo'])){echo "active";}?>">
-                <a href="war.php?warinfo"><i class="fa fa-info-circle"></i> Old Database</a>
+                <a href="war.php?warinfo"><i class="fa fa-info-circle"></i>War Infos</a>
+            </li>
+            <li class="<?php if(isset($_GET['warstats'])){echo "active";}?>">
+                <a href="war.php?warstats"><i class="fa fa-info-circle"></i>War Stats</a>
             </li>
             </ul>
 
@@ -56,6 +59,14 @@ include("includes/navbar.php");
             <?php
             if(isset($_GET['warinfo'])){
             include("war/warinfo.php");
+            }
+            ?>
+            
+        </div>
+    <div class="col-md-9">
+            <?php
+            if(isset($_GET['warstats'])){
+            include("war/warstats.php");
             }
             ?>
             
