@@ -40,7 +40,7 @@ include("includes/navbar.php");
                 <a href="war.php?warinfo"><i class="fa fa-info-circle"></i>War Infos</a>
             </li>
             <li class="<?php if(isset($_GET['warstats'])){echo "active";}?>">
-                <a href="war.php?warstats"><i class="fa fa-info-circle"></i>War Stats</a>
+                <a href="war.php?warstats"><i class="fa fa-info-stats "></i>War Stats</a>
             </li>
             </ul>
 
