@@ -123,6 +123,22 @@
 			</a>
 		</div>
 		</div>
+
+		<div class="col-lg-3 col-md-3">
+           <div class="panel panel-yellow" style="border-style:solid; border-color: yellow; opacity:0.7; float: right;">
+			<div class="panel-heading" style="color: #fff; background-color: yellow;">
+				
+			</div>
+			<a href="check.php?dashboard" style="color: #5cd85c; font-weight: bolder;">
+				<div class="panel-footer">
+					<span class="pull-left">Data Manipulation</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+
+			</a>
+		</div>
+		</div>
         
 	</div>
 	
