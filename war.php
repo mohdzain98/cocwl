@@ -37,16 +37,22 @@ include("includes/navbar.php");
                 <a href="war.php?startawar"><i class="fa fa-sign-in"></i> Star a War</a>
             </li>
             <li class="<?php if(isset($_GET['warinfo'])){echo "active";}?>">
-                <a href="war.php?warinfo"><i class="fa fa-info-circle"></i>War Infos</a>
+                <a href="war.php?warinfo"><i class="fa fa-info-circle"></i> War Infos</a>
             </li>
             <li class="<?php if(isset($_GET['warstats'])){echo "active";}?>">
-                <a href="war.php?warstats"><i class="fa fa-info-stats "></i>War Stats</a>
+                <a href="war.php?warstats"><i class="fa fa-bars"></i> War Stats</a>
+            </li>
+            <li class="<?php if(isset($_GET['rankings'])){echo "active";}?>">
+                <a href="war.php?rankings"><i class="fa fa-star"></i> Members Ranking</a>
+            </li>
+            <li class="<?php if(isset($_GET['sbyname'])){echo "active";}?>">
+                <a href="war.php?sbyname"><i class="fa fa-search"></i> Search By Name</a>
             </li>
             </ul>
 
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
     <div class="col-md-9">
             <?php
             if(isset($_GET['startawar'])){
@@ -72,9 +78,27 @@ include("includes/navbar.php");
             
         </div>
 
+    <div class="col-md-9">
+            <?php
+            if(isset($_GET['rankings'])){
+            include("war/rankings.php");
+            }
+            ?>
+            
+        </div>
+    <div class="col-md-9">
+            <?php
+            if(isset($_GET['sbyname'])){
+            include("war/sbyname.php");
+            }
+            ?>
+            
+        </div>
+
 </div>
 </div>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
