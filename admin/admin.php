@@ -41,13 +41,15 @@ include('welcome.php');
             <div class="navbar-collapse collapse" id="navigation"> <!-- navbar start-->
                 <div class="padding-nav"> <!-- padding start-->
                     <ul class="nav navbar-nav navbar-left">
-                        <li class="active">
-                            <a href="../index.php">Home</a>
+                        <li>
+                            <a href="../index.php" target="_blank">Go to website</a>
                         </li>
-                        <li style="margin-left:250px; margin-top:5px;border-style:solid;border-radius: 7px; border-width: 1px; border-color: darkblue;">
+                        <li>
+                            <a href="logout.php">logout</a>
+                        </li>
+                        <li style="margin-left:170px; margin-top:5px;border-style:solid;border-radius: 7px; border-width: 1px; border-color: darkblue;" class="active">
                            <h4 style="margin-right:10px;"> <?php welcome(); ?></h4>
                         </li>
-
                     </ul>
                     
             </div>
