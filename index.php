@@ -123,15 +123,15 @@
 			</a>
 		</div>
 		</div>
-
+		<div class="col-md-8"></div>
 		<div class="col-lg-3 col-md-3">
-           <div class="panel panel-yellow" style="border-style:solid; border-color: yellow; opacity:0.7; float: right;">
-			<div class="panel-heading" style="color: #fff; background-color: yellow;">
+           <div class="panel panel-yellow" style="border-style:solid; border-color: brown; opacity:0.7;">
+			<div class="panel-heading" style="color: #fff; background-color: brown;">
 				
 			</div>
-			<a href="check.php?dashboard" style="color: #5cd85c; font-weight: bolder;">
+			<a href="clangames.php?clg_view" style="color: brown; font-weight: bolder;">
 				<div class="panel-footer">
-					<span class="pull-left">Data Manipulation</span>
+					<span class="pull-left">Clan Games</span>
 					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 					<div class="clearfix"></div>
 				</div>
