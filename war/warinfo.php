@@ -112,9 +112,10 @@ if($month=='select' || $years=='select'){
         </div>
         <button class="btn btn-primary" type="submit" name="update" value="update" style="font-size: 18px; margin-left: 15px;">
         <i class="fa fa-refresh">Delete Selected</i></button>
-
     </div>
+
     </form>
+
 
 
 <?php
@@ -130,10 +131,11 @@ if($month=='select' || $years=='select'){
                         foreach ($_POST['remove'] as $remove_id) {
                             $delete="delete from $month where year='$years' and name='$remove_id'";
                             $run_del=mysqli_query($con,$delete);
-                            if($run_del){
+                            
+                        }
+                        if($run_del){
                                 echo "<script>alert('deleted','_self')</script>";
                             }
-                        }
                         }
                     }
                 }
