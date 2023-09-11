@@ -14,7 +14,7 @@ if(isset($_POST['table'])){
                 <div class="form-group" style="margin-left:10px;">
                    <label class=" control-label" style="margin-top:5px;">Number of Members</label>
                     <div>
-                    <input type="number" name="ntable" class="form-control" placeholder="<?php echo $table ?>" >
+                    <input type="number" name="ntable" class="form-control" placeholder="<?php echo $table ?>" min="0" max="50">
                     </div>
                 </div>
                 <button type="submit" value="Search" name="table" class="btn btn-primary" style="margin-top:8px; margin-left: 10px; ">Enter</button>
@@ -146,7 +146,12 @@ if(isset($_POST['enter'])){
     }
     for($l=0;$l<sizeof($name);$l++){
         $tattack=round($attack[$l]/$battle[$l],3);
-        $tstars=round($stars[$l]/($attack[$l]*3),3);
+        $available=round($battles[$l]/7,3);
+        if($attack[$l]!=0){
+            $tstars=round(($stars[$l])/($attack[$l]*3),3); 
+        }else{
+            $tstars=0;
+        }
         $points=round(($tattack+$tstars)/2,3);
         $query ="insert into $month values('$year','$name[$l]','$stars[$l]','$attack[$l]','$battle[$l]','$points')";
         $run = mysqli_query($con,$query);
