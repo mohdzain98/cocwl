@@ -146,7 +146,7 @@ if(isset($_POST['enter'])){
     }
     for($l=0;$l<sizeof($name);$l++){
         $tattack=round($attack[$l]/$battle[$l],3);
-        $available=round($battles[$l]/7,3);
+        $available=round($battle[$l]/7,3);
         if($attack[$l]!=0){
             $tstars=round(($stars[$l])/($attack[$l]*3),3); 
         }else{
@@ -155,13 +155,20 @@ if(isset($_POST['enter'])){
         $points=round(($tattack+$tstars)/2,3);
         $query ="insert into $month values('$year','$name[$l]','$stars[$l]','$attack[$l]','$battle[$l]','$points')";
         $run = mysqli_query($con,$query);
-        echo"<script>alert('Data Entered Successfully')
+        echo"<script>alert('Data Entered Successfully and rankings also updated')
         window.open('war.php?warinfo','_SELF')
         </script>";
         
     }
+    updateRankings($name,$attack,$battle,$con);
     }
     
 
+}
+function updateRankings($name, $attack, $battle,$con){
+    for($m=0;$m<sizeof($name);$m++){
+        $query = "update rankings set totalAttacks=(totalAttacks + $attack[$m]), totalBattles=(totalBattles + $battle[$m]), score=round((totalAttacks/totalBattles)*100,4)  where name='$name[$m]'";
+        $run = mysqli_query($con,$query);
+    }
 }
 ?>
