@@ -1,6 +1,5 @@
 <?php
 $select ="select";
-
  ?>
 <div class="box">
 	<form class="navbar-form" method="post" accept="" enctype="multipart/form-data">
@@ -74,13 +73,18 @@ $select ="select";
                     }
                     
                 }
-                $part = $sumAttacks/$sumBattles;
+                $part=0;
+                if($sumBattles>0) $part = $sumAttacks/$sumBattles;
                 $part=round($part*100,2);
                 echo "
-                <h3 style='display : inline;' ;>Overall Participation over the year : <p style='display : inline;'>$part%</p></h3>
+                <h4 style='display : inline; margin-left:-20px';>Total attacks : <p style='display : inline;'>$sumAttacks</p></h4>
+                <h4 style='display : inline;' ;>Total Battles : <p style='display : inline;'>$sumBattles</p></h4>
+                <h3 style='margin-top: 5px;'>Overall Participation over the year : <p style='display : inline;'>$part%</p></h3>
+                <hr>
                 ";
             }
             ?>
+
         </tbody>
     </table>
 </div>
